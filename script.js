@@ -399,7 +399,7 @@
         }
         
         // ========== تنظیمات OpenRouter ==========
-        const OPENROUTER_API_KEY = "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"; // کلید API جدید شما
+        const OPENROUTER_API_KEY = "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"; // کلید API جدید شما
         const OPENROUTER_MODEL = "deepseek/deepseek-r1-0528:free"; // مدل مورد نظر شما
         
         // ========== توابع تب‌ها ==========
