@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ایما - دستیار ریاضی | ورود و ثبت‌نام</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .auth-container {
+            display: flex;
+            min-height: 80vh;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .welcome-section {
+            flex: 1;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+        
+        .welcome-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-30%, 30%);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .welcome-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .welcome-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .features {
+            list-style: none;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .features i {
+            color: #a78bfa;
+        }
+        
+        .auth-section {
+            flex: 1;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .auth-tab.active {
+            color: #4f46e5;
+            border-bottom-color: #4f46e5;
+        }
+        
+        .auth-tab:hover:not(.active) {
+            color: #4f46e5;
+        }
+        
+        .auth-form {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 45px 15px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #4f46e5;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .password-toggle {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6b7280;
+            cursor: pointer;
+        }
+        
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .forgot-password {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .forgot-password:hover {
+            color: #3730a3;
+            text-decoration: underline;
+        }
+        
+        .auth-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+        
+        .auth-btn:active {
+            transform: translateY(0);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #6b7280;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+        
+        .divider span {
+            padding: 0 15px;
+        }
+        
+        .social-login {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .social-btn {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 500;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            border-color: #4f46e5;
+            color: #4f46e5;
+            transform: translateY(-2px);
+        }
+        
+        .auth-footer {
+            text-align: center;
+            color: #6b7280;
+            margin-top: 20px;
+        }
+        
+        .auth-footer a {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 5px;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .form-message {
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .form-message.success {
+            display: block;
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        
+        .form-message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .password-strength {
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .strength-bar {
+            height: 5px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 3px;
+            transition: width 0.3s ease, background 0.3s ease;
+        }
+        
+        .strength-weak { width: 33%; background: #ef4444; }
+        .strength-medium { width: 66%; background: #f59e0b; }
+        .strength-strong { width: 100%; background: #10b981; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .auth-container {
+                flex-direction: column;
+                min-height: auto;
+            }
+            
+            .welcome-section {
+                padding: 40px 20px;
+            }
+            
+            .welcome-content h1 {
+                font-size: 2rem;
+            }
+            
+            .auth-section {
+                padding: 40px 20px;
+            }
+            
+            .social-login {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .welcome-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .auth-tab {
+                padding: 12px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* استایل دکمه تست */
+        .test-btn {
+            margin-top: 15px;
+            padding: 10px;
+            background: #6b7280;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .test-btn:hover {
+            background: #4b5563;
+        }
+        
+        .debug-info {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #374151;
+            display: none;
+        }
+        
+        .debug-info.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="auth-container">
+            <!-- بخش خوش‌آمدگویی -->
+            <div class="welcome-section">
+                <div class="logo">
+                    <div class="logo-icon">IMA</div>
+                    <h2>ایما</h2>
+                </div>
+                <div class="welcome-content">
+                    <h1>به دستیار هوشمند ریاضی خوش آمدید</h1>
+                    <p>
+                        ایما یک پلتفرم کامل برای یادگیری و تمرین ریاضیات است. 
+                        با ابزارهای پیشرفته و رابط کاربری ساده، ریاضی را به روشی جذاب بیاموزید.
+                    </p>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> ماشین حساب پیشرفته</li>
+                        <li><i class="fas fa-check-circle"></i> حل معادلات خطی و درجه دو</li>
+                        <li><i class="fas fa-check-circle"></i> مسابقات ریاضی جذاب</li>
+                        <li><i class="fas fa-check-circle"></i> معلم هوش مصنوعی</li>
+                        <li><i class="fas fa-check-circle"></i> آموزش تعاملی</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- بخش فرم‌ها -->
+            <div class="auth-section">
+                <!-- تب‌های ورود/ثبت‌نام -->
+                <div class="auth-tabs">
+                    <div class="auth-tab active" onclick="showTab('login')">
+                        ورود به حساب
+                    </div>
+                    <div class="auth-tab" onclick="showTab('register')">
+                        ایجاد حساب جدید
+                    </div>
+                </div>
+                
+                <!-- پیام‌های سیستم -->
+                <div id="formMessage" class="form-message"></div>
+                
+                <!-- فرم ورود -->
+                <form id="loginForm" class="auth-form active">
+                    <div class="form-group">
+                        <label for="loginEmail">ایمیل یا نام کاربری</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="loginEmail" class="form-control" 
+                                   placeholder="example@email.com یا username" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">رمز عبور</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" class="form-control" 
+                                   placeholder="رمز عبور خود را وارد کنید" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            مرا به خاطر بسپار
+                        </label>
+                        <a href="#" class="forgot-password" onclick="showForgotPassword()">
+                            رمز عبور را فراموش کرده‌اید؟
+                        </a>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        ورود به حساب
+                    </button>
+                    
+                    <!-- دکمه تست برای عیب‌یابی -->
+                    <button type="button" class="test-btn" onclick="debugLoginSystem()">
+                        <i class="fas fa-bug"></i> تست سیستم ورود
+                    </button>
+                    
+                    <div class="divider">
+                        <span>یا ورود با</span>
+                    </div>
+                    
+                    <div class="social-login">
+                        <button type="button" class="social-btn" onclick="socialLogin('google')">
+                            <i class="fab fa-google"></i>
+                            گوگل
+                        </button>
+                        <button type="button" class="social-btn" onclick="socialLogin('github')">
+                            <i class="fab fa-github"></i>
+                            گیت‌هاب
+                        </button>
+                    </div>
+                    
+                    <div class="auth-footer">
+                        حساب کاربری ندارید؟
+                        <a href="#" onclick="showTab('register')">ثبت‌نام کنید</a>
+                    </div>
+                    
+                    <!-- بخش دیباگ -->
+                    <div id="debugInfo" class="debug-info"></div>
+                </form>
+                
+                <!-- فرم ثبت‌نام -->
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="registerName">نام کامل</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="registerName" class="form-control" 
+                                   placeholder="نام و نام خانوادگی" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerUsername">نام کاربری</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-at"></i>
+                            <input type="text" id="registerUsername" class="form-control" 
+                                   placeholder="username" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerEmail">ایمیل</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="registerEmail" class="form-control" 
+                                   placeholder="example@email.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerPassword">رمز عبور</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="registerPassword" class="form-control" 
+                                   placeholder="رمز عبور قوی انتخاب کنید" required 
+                                   oninput="checkPasswordStrength(this.value)">
+                            <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength">
+                            <span id="strengthText">قدرت رمز عبور: </span>
+                            <div class="strength-bar">
+                                <div id="strengthFill" class="strength-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">تکرار رمز عبور</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="registerConfirmPassword" class="form-control" 
+                                   placeholder="رمز عبور را تکرار کنید" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('registerConfirmPassword')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="acceptTerms" required>
+                            با <a href="#" onclick="showTerms()">شرایط استفاده</a> موافقم
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">
+                        <i class="fas fa-user-plus"></i>
+                        ایجاد حساب کاربری
+                    </button>
+                    
+                    <div class="auth-footer">
+                        قبلاً حساب دارید؟
+                        <a href="#" onclick="showTab('login')">وارد شوید</a>
+                    </div>
+                </form>
+                
+                <!-- فرم فراموشی رمز عبور -->
+                <form id="forgotPasswordForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="forgotEmail">ایمیل حساب کاربری</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="forgotEmail" class="form-control" 
+                                   placeholder="example@email.com" required>
+                        </div>
+                        <p style="color: #6b7280; font-size: 0.9rem; margin-top: 8px;">
+                            لینک بازنشانی رمز عبور به ایمیل شما ارسال خواهد شد.
+                        </p>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">
+                        <i class="fas fa-key"></i>
+                        ارسال لینک بازنشانی
+                    </button>
+                    
+                    <div class="auth-footer">
+                        <a href="#" onclick="showTab('login')">
+                            <i class="fas fa-arrow-right"></i>
+                            بازگشت به صفحه ورود
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== سیستم مدیریت کاربران با localStorage ==========
+        
+        // کلید ذخیره‌سازی در localStorage
+        const STORAGE_KEY = 'ima_users';
+        const CURRENT_USER_KEY = 'ima_current_user';
+        
+        // مقداردهی اولیه کاربران
+        function initUsers() {
+            if (!localStorage.getItem(STORAGE_KEY)) {
+                // کاربر پیش‌فرض برای تست
+                const defaultUsers = {
+                    'admin': {
+                        id: 1,
+                        name: 'مدیر سیستم',
+                        username: 'admin',
+                        email: 'admin@ima.com',
+                        password: 'admin123', // در واقعیت باید هش شده باشد
+                        avatar: '',
+                        createdAt: new Date().toISOString(),
+                        lastLogin: null
+                    },
+                    'test': {
+                        id: 2,
+                        name: 'کاربر تست',
+                        username: 'test',
+                        email: 'test@ima.com',
+                        password: 'test123',
+                        avatar: '',
+                        createdAt: new Date().toISOString(),
+                        lastLogin: null
+                    }
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultUsers));
+                console.log('کاربران پیش‌فرض ایجاد شدند:', defaultUsers);
+            }
+        }
+        
+        // ثبت کاربر جدید (نسخه اصلاح شده)
+        function registerUser(userData) {
+            try {
+                const users = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+                
+                console.log('شروع ثبت نام:', userData);
+                console.log('کاربران موجود:', users);
+                
+                // بررسی تکراری نبودن ایمیل و نام کاربری
+                for (const username in users) {
+                    if (users[username].email === userData.email) {
+                        console.log('ایمیل تکراری:', userData.email);
+                        return { success: false, message: 'این ایمیل قبلاً ثبت شده است' };
+                    }
+                    if (username === userData.username) {
+                        console.log('نام کاربری تکراری:', userData.username);
+                        return { success: false, message: 'این نام کاربری قبلاً انتخاب شده است' };
+                    }
+                }
+                
+                // ایجاد کاربر جدید
+                const newUser = {
+                    id: Date.now(),
+                    name: userData.name,
+                    username: userData.username,
+                    email: userData.email,
+                    password: userData.password, // در واقعیت باید هش شود
+                    avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.name)}&background=4f46e5&color=fff`,
+                    createdAt: new Date().toISOString(),
+                    lastLogin: null
+                };
+                
+                // ذخیره کاربر
+                users[userData.username] = newUser;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+                
+                console.log('کاربر با موفقیت ثبت شد:', newUser);
+                console.log('کاربران پس از ثبت:', users);
+                
+                return { 
+                    success: true, 
+                    message: 'ثبت‌نام با موفقیت انجام شد',
+                    user: newUser
+                };
+            } catch (error) {
+                console.error('خطا در ثبت نام:', error);
+                return { success: false, message: 'خطا در ثبت نام' };
+            }
+        }
+        
+        // ورود کاربر (نسخه اصلاح شده و ساده)
+        function loginUser(identifier, password) {
+            try {
+                console.log('=== شروع فرآیند ورود ===');
+                console.log('شناسه وارد شده:', identifier);
+                console.log('رمز عبور وارد شده:', password);
+                
+                const users = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+                console.log('کاربران موجود در سیستم:', users);
+                
+                // جستجوی کاربر
+                let foundUser = null;
+                let foundUsername = '';
+                
+                // جستجو با نام کاربری
+                if (users[identifier]) {
+                    foundUser = users[identifier];
+                    foundUsername = identifier;
+                    console.log('کاربر با نام کاربری یافت شد:', identifier);
+                } 
+                // اگر با نام کاربری پیدا نشد، با ایمیل جستجو کن
+                else {
+                    for (const username in users) {
+                        const user = users[username];
+                        if (user.email === identifier) {
+                            foundUser = user;
+                            foundUsername = username;
+                            console.log('کاربر با ایمیل یافت شد:', identifier);
+                            break;
+                        }
+                    }
+                }
+                
+                // اگر کاربر پیدا نشد
+                if (!foundUser) {
+                    console.log('کاربر یافت نشد');
+                    return { 
+                        success: false, 
+                        message: 'کاربری با این مشخصات یافت نشد. لطفاً ابتدا ثبت‌نام کنید.' 
+                    };
+                }
+                
+                console.log('کاربر پیدا شده:', foundUser);
+                console.log('رمز ذخیره شده:', foundUser.password);
+                
+                // بررسی رمز عبور
+                if (foundUser.password !== password) {
+                    console.log('رمز عبور اشتباه است');
+                    return { 
+                        success: false, 
+                        message: 'رمز عبور اشتباه است. لطفاً مجدداً تلاش کنید.' 
+                    };
+                }
+                
+                // به‌روزرسانی زمان آخرین ورود
+                foundUser.lastLogin = new Date().toISOString();
+                users[foundUsername] = foundUser;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+                
+                // ذخیره کاربر جاری
+                const currentUserData = {
+                    id: foundUser.id,
+                    name: foundUser.name,
+                    username: foundUsername,
+                    email: foundUser.email,
+                    avatar: foundUser.avatar,
+                    lastLogin: foundUser.lastLogin
+                };
+                
+                localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUserData));
+                localStorage.setItem('isLoggedIn', 'true');
+                
+                console.log('کاربر جاری ذخیره شد:', currentUserData);
+                console.log('=== ورود موفقیت‌آمیز ===');
+                
+                return { 
+                    success: true, 
+                    message: 'ورود موفقیت‌آمیز!', 
+                    user: currentUserData 
+                };
+                
+            } catch (error) {
+                console.error('خطا در ورود:', error);
+                return { 
+                    success: false, 
+                    message: 'خطایی در سیستم رخ داده است. لطفاً مجدداً تلاش کنید.' 
+                };
+            }
+        }
+        
+        // ========== مدیریت فرم‌ها ==========
+        
+        // نمایش تب مورد نظر
+        function showTab(tabName) {
+            // مخفی کردن همه فرم‌ها
+            document.querySelectorAll('.auth-form').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            // غیرفعال کردن همه تب‌ها
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // نمایش فرم انتخاب شده
+            const formToShow = document.getElementById(`${tabName}Form`);
+            if (formToShow) {
+                formToShow.classList.add('active');
+            }
+            
+            // فعال کردن تب مربوطه
+            const tabs = document.querySelectorAll('.auth-tab');
+            if (tabName === 'login') {
+                tabs[0].classList.add('active');
+            } else if (tabName === 'register') {
+                tabs[1].classList.add('active');
+            }
+            
+            // پاک کردن پیام‌ها
+            clearMessages();
+            
+            // مخفی کردن اطلاعات دیباگ
+            document.getElementById('debugInfo').classList.remove('active');
+        }
+        
+        // نمایش فرم فراموشی رمز عبور
+        function showForgotPassword() {
+            showTab('forgotPassword');
+        }
+        
+        // نمایش شرایط استفاده
+        function showTerms() {
+            alert(`شرایط استفاده از ایما:
+            
+1. شما مسئول حفظ امنیت حساب کاربری خود هستید.
+2. از حساب خود فقط برای اهداف آموزشی استفاده کنید.
+3. محتوای غیراخلاقی ممنوع است.
+4. ما اطلاعات شما را محرمانه نگه می‌داریم.
+            
+با کلیک بر روی دکمه "ثبت‌نام" با این شرایط موافقت می‌کنید.`);
+        }
+        
+        // نمایش پیام
+        function showMessage(message, type = 'success') {
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.textContent = message;
+            messageDiv.className = `form-message ${type}`;
+            messageDiv.style.display = 'block';
+            
+            // پاک کردن خودکار پیام پس از 5 ثانیه
+            setTimeout(() => {
+                clearMessages();
+            }, 5000);
+        }
+        
+        // پاک کردن پیام‌ها
+        function clearMessages() {
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.style.display = 'none';
+            messageDiv.textContent = '';
+        }
+        
+        // بررسی قدرت رمز عبور
+        function checkPasswordStrength(password) {
+            const strengthText = document.getElementById('strengthText');
+            const strengthFill = document.getElementById('strengthFill');
+            
+            let strength = 0;
+            let text = 'ضعیف';
+            let className = 'strength-weak';
+            
+            if (password.length >= 8) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            if (strength === 4) {
+                text = 'قوی';
+                className = 'strength-strong';
+            } else if (strength >= 2) {
+                text = 'متوسط';
+                className = 'strength-medium';
+            }
+            
+            strengthText.textContent = `قدرت رمز عبور: ${text}`;
+            strengthFill.className = `strength-fill ${className}`;
+        }
+        
+        // نمایش/مخفی کردن رمز عبور
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+        
+        // اعتبارسنجی ایمیل
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // ========== توابع دیباگ و تست ==========
+        
+        // تابع دیباگ برای بررسی سیستم
+        function debugLoginSystem() {
+            const debugInfo = document.getElementById('debugInfo');
+            let html = '<h4 style="margin-bottom: 10px;">اطلاعات دیباگ سیستم:</h4>';
+            
+            // اطلاعات localStorage
+            const users = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+            const currentUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY)) || {};
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            
+            html += `<p><strong>تعداد کاربران ثبت‌نام شده:</strong> ${Object.keys(users).length}</p>`;
+            html += `<p><strong>وضعیت ورود:</strong> ${isLoggedIn || 'خیر'}</p>`;
+            html += `<p><strong>کاربر جاری:</strong> ${currentUser.name || 'هیچ کاربری وارد نشده'}</p>`;
+            html += `<p><strong>کاربران موجود:</strong></p><ul>`;
+            
+            for (const username in users) {
+                const user = users[username];
+                html += `<li>${username} - ${user.name} - ${user.email}</li>`;
+            }
+            
+            html += `</ul>`;
+            html += `<button onclick="clearAllData()" style="background: #ef4444; color: white; border: none; padding: 8px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer;">پاک کردن تمام داده‌ها</button>`;
+            html += `<button onclick="testAutoLogin()" style="background: #10b981; color: white; border: none; padding: 8px 15px; border-radius: 5px; margin-top: 10px; margin-right: 10px; cursor: pointer;">تست ورود خودکار</button>`;
+            
+            debugInfo.innerHTML = html;
+            debugInfo.classList.add('active');
+        }
+        
+        // پاک کردن تمام داده‌ها
+        function clearAllData() {
+            if (confirm('آیا مطمئن هستید که می‌خواهید تمام داده‌ها را پاک کنید؟')) {
+                localStorage.clear();
+                alert('تمامی داده‌ها پاک شدند. صفحه در حال بارگذاری مجدد است...');
+                location.reload();
+            }
+        }
+        
+        // تست ورود خودکار
+        function testAutoLogin() {
+            const testUsers = [
+                { username: 'admin', password: 'admin123' },
+                { username: 'test', password: 'test123' }
+            ];
+            
+            let options = 'انتخاب کاربر برای تست:\n\n';
+            testUsers.forEach((user, index) => {
+                options += `${index + 1}. ${user.username}\n`;
+            });
+            
+            const choice = prompt(options);
+            if (choice === '1' || choice === '2') {
+                const selectedUser = testUsers[parseInt(choice) - 1];
+                document.getElementById('loginEmail').value = selectedUser.username;
+                document.getElementById('loginPassword').value = selectedUser.password;
+                showMessage('اطلاعات تست وارد شدند. دکمه "ورود به حساب" را بزنید.', 'success');
+            }
+        }
+        
+        // ========== مدیریت ارسال فرم‌ها ==========
+        
+        // فرم ثبت‌نام
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('registerName').value.trim();
+            const username = document.getElementById('registerUsername').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            console.log('اطلاعات ثبت‌نام:', { name, username, email, password, confirmPassword });
+            
+            // اعتبارسنجی
+            if (!name || !username || !email || !password || !confirmPassword) {
+                showMessage('لطفاً تمام فیلدها را پر کنید', 'error');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showMessage('لطفاً یک ایمیل معتبر وارد کنید', 'error');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showMessage('رمز عبور باید حداقل 6 کاراکتر باشد', 'error');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showMessage('رمز عبور و تکرار آن مطابقت ندارند', 'error');
+                return;
+            }
+            
+            if (!document.getElementById('acceptTerms').checked) {
+                showMessage('لطفاً با شرایط استفاده موافقت کنید', 'error');
+                return;
+            }
+            
+            // ثبت کاربر
+            const result = registerUser({
+                name,
+                username,
+                email,
+                password
+            });
+            
+            if (result.success) {
+                showMessage(result.message + ' ✅ در حال ورود به سیستم...', 'success');
+                
+                // ورود خودکار بعد از ثبت‌نام
+                setTimeout(() => {
+                    const loginResult = loginUser(username, password);
+                    if (loginResult.success) {
+                        showMessage('ورود خودکار موفقیت‌آمیز! در حال هدایت به صفحه اصلی...', 'success');
+                        
+                        // هدایت به صفحه اصلی بعد از 2 ثانیه
+                        setTimeout(() => {
+                            window.location.href = 'main.html';
+                        }, 2000);
+                    } else {
+                        showMessage('ثبت‌نام موفق بود اما ورود خودکار انجام نشد. لطفاً به صورت دستی وارد شوید.', 'error');
+                    }
+                }, 1500);
+            } else {
+                showMessage(result.message, 'error');
+            }
+        });
+        
+        // فرم ورود (نسخه اصلاح شده)
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const identifier = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!identifier || !password) {
+                showMessage('لطفاً ایمیل/نام کاربری و رمز عبور را وارد کنید', 'error');
+                return;
+            }
+            
+            // ورود کاربر
+            const result = loginUser(identifier, password);
+            
+            if (result.success) {
+                showMessage(result.message + ' ✅ در حال هدایت به صفحه اصلی...', 'success');
+                
+                // ذخیره وضعیت "مرا به خاطر بسپار"
+                if (document.getElementById('rememberMe').checked) {
+                    localStorage.setItem('rememberMe', 'true');
+                }
+                
+                // هدایت به صفحه اصلی بعد از 1.5 ثانیه
+                setTimeout(() => {
+                    window.location.href = 'main.html';
+                }, 1500);
+            } else {
+                showMessage(result.message, 'error');
+            }
+        });
+        
+        // فرم فراموشی رمز عبور
+        document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('forgotEmail').value.trim();
+            
+            if (!email || !validateEmail(email)) {
+                showMessage('لطفاً یک ایمیل معتبر وارد کنید', 'error');
+                return;
+            }
+            
+            // شبیه‌سازی ارسال ایمیل
+            showMessage(`لینک بازنشانی رمز عبور به ${email} ارسال شد. (این قابلیت در نسخه دمو کار می‌کند)`, 'success');
+            
+            // بازگشت به صفحه ورود بعد از 3 ثانیه
+            setTimeout(() => {
+                showTab('login');
+            }, 3000);
+        });
+        
+        // ورود با شبکه‌های اجتماعی (شبیه‌سازی)
+        function socialLogin(provider) {
+            showMessage(`در حال اتصال به ${provider}... (این قابلیت در نسخه دمو کار می‌کند)`, 'success');
+            
+            // شبیه‌سازی کاربر اجتماعی
+            setTimeout(() => {
+                const socialUser = {
+                    id: Date.now(),
+                    name: 'کاربر تست',
+                    username: `social_${provider}`,
+                    email: `social@${provider}.com`,
+                    avatar: `https://ui-avatars.com/api/?name=Social+User&background=3b82f6&color=fff`,
+                    isSocial: true
+                };
+                
+                localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(socialUser));
+                localStorage.setItem('isLoggedIn', 'true');
+                
+                showMessage('ورود موفقیت‌آمیز با حساب اجتماعی ✅ در حال هدایت...', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'main.html';
+                }, 1500);
+            }, 1000);
+        }
+        
+        // ========== مقداردهی اولیه ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('صفحه در حال بارگذاری است...');
+            
+            // مقداردهی اولیه کاربران
+            initUsers();
+            
+            // بررسی "مرا به خاطر بسپار"
+            if (localStorage.getItem('rememberMe') === 'true') {
+                document.getElementById('rememberMe').checked = true;
+            }
+            
+            // نمایش تب ورود به عنوان پیش‌فرض
+            showTab('login');
+            
+            // افزودن انیمیشن ورود
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-2px)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+            });
+            
+            console.log('صفحه با موفقیت بارگذاری شد.');
+        });
+        
+        // ========== توابع عمومی برای استفاده در صفحات دیگر ==========
+        
+        // دریافت اطلاعات کاربر جاری
+        function getCurrentUser() {
+            const user = localStorage.getItem(CURRENT_USER_KEY);
+            return user ? JSON.parse(user) : null;
+        }
+        
+        // بررسی آیا کاربر وارد شده است
+        function isLoggedIn() {
+            return localStorage.getItem('isLoggedIn') === 'true';
+        }
+        
+        // خروج کاربر
+        function logout() {
+            localStorage.removeItem(CURRENT_USER_KEY);
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'index.html';
+        }
+        
+        // به‌روزرسانی پروفایل کاربر
+        function updateUserProfile(userData) {
+            const currentUser = getCurrentUser();
+            if (!currentUser) return false;
+            
+            const users = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+            
+            if (users[currentUser.username]) {
+                // به‌روزرسانی اطلاعات
+                users[currentUser.username] = {
+                    ...users[currentUser.username],
+                    name: userData.name || users[currentUser.username].name,
+                    email: userData.email || users[currentUser.username].email,
+                    avatar: userData.avatar || users[currentUser.username].avatar
+                };
+                
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+                
+                // به‌روزرسانی کاربر جاری
+                currentUser.name = users[currentUser.username].name;
+                currentUser.email = users[currentUser.username].email;
+                currentUser.avatar = users[currentUser.username].avatar;
+                localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
+                
+                return true;
+            }
+            
+            return false;
+        }
+    </script>
+</body>
+</html>
